@@ -24,15 +24,7 @@ public class SparkJavaHelloWorld {
         JavaRDD<String> lines = ctx.textFile("./data/amazon.csv", 1);
 
         // Lets do something different, do a word count
-        JavaRDD<String> words = lines.flatMap(
-                new FlatMapFunction<String, String>() {
-
-                    @Override
-                    public Iterator<String> call(String s) {
-                        return Arrays.asList(s.split(" ")).iterator();
-                    }
-                }
-        );
+        JavaRDD<String> words = lines.flatMap( (s) -> Arrays.asList(s.split(" ")).iterator());
 
         // Display results
         System.out.println("Read " + lines.count() + " row(s) with " + words.count() + " words");
