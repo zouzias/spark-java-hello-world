@@ -4,6 +4,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
+import org.zouzias.spark.lucenerdd.api.java.LuceneJavaRDD;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -22,6 +23,8 @@ public class SparkJavaHelloWorld {
 
         // Perform the read. Filename specified in-line
         JavaRDD<String> lines = ctx.textFile("./data/amazon.csv", 1);
+
+        LuceneJavaRDD<String> luceneRDD = LuceneJavaRDD.fromRDD(lines);
 
         // Lets do something different, do a word count
         JavaRDD<String> words = lines.flatMap( (s) -> Arrays.asList(s.split(" ")).iterator());
