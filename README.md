@@ -7,4 +7,3 @@ Hello world in Spark using Java and Gradle.
 ```
 Simply run `build-and-run.sh` to build and run the uber-jar.
 ```
->>>>>>> add instructions for building and running
